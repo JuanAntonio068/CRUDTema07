@@ -1,0 +1,52 @@
+CLASE Estudiante
+	- id int
+	- nombre String
+    - apellido String
+    + Estudiante(int id, String nombre, String apellido)
+	+ getId() 
+	+ setId(int id)
+	+ getNombre()
+	+ getApellido()
+	
+CLASE Curso
+    - id int
+    - nombre String
+    + Curso(int id, String nombre)
+    + getId()
+	+ setId(int id)
+	+ getNombre()
+
+CLASE Profesor
+    - id int
+	- nombre String
+    + Profesor(int id, String nombre)
+    + getId()
+    + setId(int id)
+    + getNombre()
+
+CLASE Calificacion
+    - id int
+    - estudianteId int
+    - cursoId int
+    - profesorId int
+    - nota double
+    - fecha_evualacion String
+    + Calificacion(int estudianteId, int cursoId, int profesorId, double nota, String fecha_evaluacion)
+    + int getEstudianteId()
+
+
+CLASE CalificacionDAO
+
+    + void insertarCalificacion(Calificacion calificacion)
+    + List<Calificacion> listarPorEstudiante(int estudianteId)
+    + List<Calificacion> listarPorCurso(int cursoId)
+    + void modificarCalificacion(int id, double nuevaNota) 
+    + void eliminarCalificacion(int id)
+}
+
+CLASE Main
+    public void menu()
+    public nuevaCalificacion
+}
+
+
