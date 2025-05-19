@@ -29,9 +29,10 @@ CLASE Calificacion
     - estudianteId int
     - cursoId int
     - profesorId int
+    - tipo_evaluacion String
     - nota double
     - fecha_evualacion String
-    + Calificacion(int estudianteId, int cursoId, int profesorId, double nota, String fecha_evaluacion)
+    + Calificacion(int estudianteId, int cursoId, int profesorId, String tipo_evaluacion double nota, String fecha_evaluacion)
     + int getEstudianteId()
 
 
