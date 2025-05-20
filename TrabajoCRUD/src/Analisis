@@ -29,25 +29,37 @@ CLASE Calificacion
     - estudianteId int
     - cursoId int
     - profesorId int
-    - tipo_evaluacion String
+    - tipoEvaluacion String
     - nota double
-    - fecha_evualacion String
-    + Calificacion(int estudianteId, int cursoId, int profesorId, String tipo_evaluacion double nota, String fecha_evaluacion)
-    + int getEstudianteId()
+    - fechaEvualacion String
+    + Calificacion(int estudianteId, int cursoId, int profesorId, String tipoEvaluacion, double nota, String fechaEvaluacion)
+    + getId()
+    + setId()
+    + getEstudianteId()
+    + getCursoId()
+    + getProfesorId()
+    + getTipoEvaluacion
+    + getNota()
+    + getFechaEvaluacion()
 
 
 CLASE CalificacionDAO
-
-    + void insertarCalificacion(Calificacion calificacion)
+	
+	- conexion Connection
+	+ CalificacionDAO()
+    + void CREATE(Calificacion calificacion)
     + List<Calificacion> listarPorEstudiante(int estudianteId)
     + List<Calificacion> listarPorCurso(int cursoId)
-    + void modificarCalificacion(int id, double nuevaNota) 
-    + void eliminarCalificacion(int id)
-}
+    + void UPDATE(int id, double nuevaNota) 
+    + void DELETE(int id)
+
 
 CLASE Main
-    public void menu()
-    public nuevaCalificacion
-}
+    + void menu()
+    + Calificacion leerDatos()
 
 
+CLASE constantes
+	+ final URL
+	+ final usuario
+	+ final contraseña
