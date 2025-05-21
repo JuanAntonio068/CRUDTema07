@@ -47,16 +47,22 @@ CLASE CalificacionDAO
 	
 	- conexion Connection
 	+ CalificacionDAO()
+	+ getConexion()
     + void CREATE(Calificacion calificacion)
     + List<Calificacion> listarPorEstudiante(int estudianteId)
     + List<Calificacion> listarPorCurso(int cursoId)
-    + void UPDATE(int id, double nuevaNota) 
-    + void DELETE(int id)
+    + boolean UPDATE(int id, double nuevaNota) 
+    + boolean DELETE(int id)
 
 
 CLASE Main
     + void menu()
     + Calificacion leerDatos()
+    + int pedirEstudianteId()
+    + int pedirCursoId()
+    + int pedirProfesor()
+    + int pedirId()
+    + double pedirNota()
 
 
 CLASE constantes
