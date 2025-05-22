@@ -1,5 +1,6 @@
 package interfaz;
 
+import java.util.List;
 import java.util.Scanner;
 
 import dao.CalificacionDAO;
@@ -17,6 +18,9 @@ public class Main {
 
 		// Declaramos el DAO
 		CalificacionDAO calfDAO = new CalificacionDAO();
+
+		// Lista donde añadir calificaciones
+		List<Calificacion> calificaciones;
 
 		// Variable para guardar la opción del usuario
 		int opcion;
@@ -51,8 +55,12 @@ public class Main {
 					// Llamamos a la funcion para pedir los datos y crear el objeto
 					calf = leerDatosCalificacion();
 
-					// Llamamos a la función para crear la calificación en la base de datos
-					calfDAO.create(calf);
+					// Verificamos
+					if (calfDAO.create(calf)) {// Se ha añadido correctamente
+						System.out.println("Calificación añadida exitosamente.");
+					} else {// No se ha podido añadir
+						System.out.println("Error al añadir la calificación.");
+					}
 				}
 				// El usuario ha elegido listar todas las calificaciones de un estudiante
 				case 2 -> {
@@ -60,16 +68,38 @@ public class Main {
 					// Llamamos al método y lo guardamos
 					estudianteId = pedirEstudianteId();
 
-					// Llamamos al método para listar todas las calificaciones
-					calfDAO.listarPorEstudiante(estudianteId);
+					// Llamamos al método y lo guardamos
+					calificaciones = calfDAO.listarPorEstudiante(estudianteId);
+
+					// Comprobamos de que la lista no esté vacía
+					if (calificaciones.isEmpty()) {// La lista está vacía
+						System.out.println("No se encontraron calificaciones para este estudiante.");
+					} else {
+						// Imprimimos el resultado
+						System.out.println("\n--- Calificaciones del Estudiante ---");
+						for (Calificacion c : calificaciones) {
+							System.out.println(c);
+						}
+					}
 				}
 				// El usuario ha elegido listar todas las calificaciones de un curso
 				case 3 -> {
 					// Llamamos al método y lo guardamos
 					cursoId = pedirCursoId();
 
-					// Llamamos al método para listar todas las calificaciones
-					calfDAO.listarPorCurso(cursoId);
+					// Llamamos al método y lo guardamos
+					calificaciones = calfDAO.listarPorCurso(cursoId);
+
+					// Comprobamos de que la lista no esté vacía
+					if (calificaciones.isEmpty()) {// La lista está vacía
+						System.out.println("No se encontraron calificaciones para este curso.");
+					} else {
+						// Imprimimos el resultado
+						System.out.println("\n--- Calificaciones del Curso ---");
+						for (Calificacion c : calificaciones) {
+							System.out.println(c);
+						}
+					}
 				}
 				// El usuario ha elegido modificar una calificación
 				case 4 -> {
@@ -79,16 +109,24 @@ public class Main {
 					// Llamamos al método y la guardamos
 					nota = pedirNota();
 
-					// Llamamos al método para modificar una calificación
-					calfDAO.update(id, nota);
+					// Verificamos
+					if (calfDAO.update(id, nota)) {// La nota se ha podido modificar
+						System.out.println("Calificación modificada exitosamente.");
+					} else {// No se ha podido modificar
+						System.out.println("Error al modificar la calificación.");
+					}
 				}
 				// El usuario ha elegido eliminar una calificación
 				case 5 -> {
 					// Llamamos al método y lo guardamos
 					id = pedirId();
 
-					// Llamamos al método para eliminar una calificación
-					calfDAO.delete(id);
+					// Verificamos
+					if (calfDAO.delete(id)) {// Se ha podido eliminar
+						System.out.println("Calificación eliminada exitosamente.");
+					} else {// No se ha podido eliminar
+						System.out.println("Error al eliminar la calificación. Verifique el ID.");
+					}
 				}
 				// El usuario ha elegido salir del bucle
 				case 0 -> {

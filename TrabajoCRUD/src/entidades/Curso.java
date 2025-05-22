@@ -48,4 +48,8 @@ public class Curso {
 		return nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "Id: " + id + "\nNombre: " + nombre;
+	}
 }

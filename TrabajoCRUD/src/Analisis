@@ -7,6 +7,7 @@ CLASE Estudiante
 	+ setId(int id)
 	+ getNombre()
 	+ getApellido()
+	+ toString()
 	
 CLASE Curso
     - id int
@@ -15,7 +16,8 @@ CLASE Curso
     + getId()
 	+ setId(int id)
 	+ getNombre()
-
+	+ toString()
+	
 CLASE Profesor
     - id int
 	- nombre String
@@ -23,6 +25,7 @@ CLASE Profesor
     + getId()
     + setId(int id)
     + getNombre()
+    + toString()
 
 CLASE Calificacion
     - id int
@@ -33,6 +36,7 @@ CLASE Calificacion
     - nota double
     - fechaEvualacion String
     + Calificacion(int estudianteId, int cursoId, int profesorId, String tipoEvaluacion, double nota, String fechaEvaluacion)
+    + Calificacion(int id, int estudianteId, int cursoId, int profesorId, String tipoEvaluacion, double nota, String fechaEvaluacion)
     + getId()
     + setId()
     + getEstudianteId()
@@ -41,6 +45,7 @@ CLASE Calificacion
     + getTipoEvaluacion
     + getNota()
     + getFechaEvaluacion()
+    + toString()
 
 
 CLASE CalificacionDAO

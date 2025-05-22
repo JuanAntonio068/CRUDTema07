@@ -41,6 +41,29 @@ public class Calificacion {
 	}
 
 	/**
+	 * El constructor de la clase calificaion
+	 * 
+	 * @param id              id que representa a una calificación
+	 * @param estudianteId    id que represente a un estudiante
+	 * @param cursoId         id que representa a un curso
+	 * @param profesorId      id que representa a un profesor
+	 * @param tipoEvaluacion  El tipo de la evaluacion
+	 * @param nota            La nota de la calificacion
+	 * @param fechaEvaluacion La fecha de la evaluacion
+	 */
+	public Calificacion(int id, int estudianteId, int cursoId, int profesorId, String tipoEvaluacion, double nota,
+			String fechaEvaluacion) {
+		super();
+		this.id = id;
+		this.estudianteId = estudianteId;
+		this.cursoId = cursoId;
+		this.profesorId = profesorId;
+		this.tipoEvaluacion = tipoEvaluacion;
+		this.nota = nota;
+		this.fechaEvaluacion = fechaEvaluacion;
+	}
+
+	/**
 	 * Método que devuelve el id
 	 * 
 	 * @return El id de la calificación
@@ -112,4 +135,9 @@ public class Calificacion {
 		return fechaEvaluacion;
 	}
 
+	@Override
+	public String toString() {
+		return "Id: " + id + "\nEstudianteId: " + estudianteId + "\nCursoId: " + cursoId + "\nProfesorId: "
+				+ "\nTipo Evaluación: " + tipoEvaluacion + "\nNota: " + nota + "\nFecha evaluación: " + fechaEvaluacion;
+	}
 }

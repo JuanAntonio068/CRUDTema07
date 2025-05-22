@@ -47,4 +47,8 @@ public class Profesor {
 		return nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "Id: " + id + "\nNombre: " + nombre;
+	}
 }
