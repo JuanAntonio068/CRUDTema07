@@ -5,19 +5,33 @@ package entidades;
  */
 public class Calificacion {
 
-	// id que representa a una calificacion
+	/**
+	 * id que representa a una calificacion
+	 */
 	private int id;
-	// id que represente a un estudiante
+	/**
+	 * id que represente a un estudiante
+	 */
 	private int estudianteId;
-	// id que representa a un curso
+	/**
+	 * id que representa a un curso
+	 */
 	private int cursoId;
-	// id que representa a un profesor
+	/**
+	 * id que representa a un profesor
+	 */
 	private int profesorId;
-	// El tipo de la evaluacion
+	/**
+	 * El tipo de la evaluacion
+	 */
 	private String tipoEvaluacion;
-	// La nota de la calificacion
+	/**
+	 * La nota de la calificacion
+	 */
 	private double nota;
-	// La fecha de la evaluacion
+	/**
+	 * La fecha de la evaluacion
+	 */
 	private String fechaEvaluacion;
 
 	/**
@@ -70,15 +84,6 @@ public class Calificacion {
 	 */
 	public int getId() {
 		return id;
-	}
-
-	/**
-	 * Método para modificar el id
-	 * 
-	 * @param id el nuevo id de la calificación
-	 */
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	/**
@@ -136,8 +141,26 @@ public class Calificacion {
 	}
 
 	@Override
+	/**
+	 * Método para mostrar la información del objeto
+	 * 
+	 * @return Una cadena con toda la informacion del objeto
+	 */
 	public String toString() {
 		return "Id: " + id + "\nEstudianteId: " + estudianteId + "\nCursoId: " + cursoId + "\nProfesorId: "
 				+ "\nTipo Evaluación: " + tipoEvaluacion + "\nNota: " + nota + "\nFecha evaluación: " + fechaEvaluacion;
+	}
+
+	@Override
+	/**
+	 * Método para saber si dos objetos son iguales
+	 * 
+	 * @return True si son iguales, false, si no
+	 */
+	public boolean equals(Object obj) {
+		// Hacemos un cast
+		Calificacion calf = (Calificacion) obj;
+
+		return this.id == calf.id;
 	}
 }

@@ -5,9 +5,13 @@ package entidades;
  */
 public class Curso {
 
-	// Id que representa a un curso
+	/**
+	 * Id que representa a un curso
+	 */
 	private int id;
-	// El nombre del curso
+	/**
+	 * El nombre del curso
+	 */
 	private String nombre;
 
 	/**
@@ -31,15 +35,6 @@ public class Curso {
 	}
 
 	/**
-	 * Método para cambiar el id
-	 * 
-	 * @param id El nuevo id del curso
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
 	 * Método para devolver el nombre
 	 * 
 	 * @return El nombre del curso
@@ -49,7 +44,25 @@ public class Curso {
 	}
 
 	@Override
+	/**
+	 * Método para mostrar la información del objeto
+	 * 
+	 * @return Una cadena con toda la informacion del objeto
+	 */
 	public String toString() {
 		return "Id: " + id + "\nNombre: " + nombre;
+	}
+
+	@Override
+	/**
+	 * Método para saber si dos objetos son iguales
+	 * 
+	 * @return True si son iguales, false, si no
+	 */
+	public boolean equals(Object obj) {
+		// Hacemos un cast
+		Curso curs = (Curso) obj;
+
+		return this.id == curs.id;
 	}
 }

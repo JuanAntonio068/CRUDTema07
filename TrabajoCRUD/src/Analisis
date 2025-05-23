@@ -8,6 +8,7 @@ CLASE Estudiante
 	+ getNombre()
 	+ getApellido()
 	+ toString()
+	+ equals()
 	
 CLASE Curso
     - id int
@@ -17,6 +18,7 @@ CLASE Curso
 	+ setId(int id)
 	+ getNombre()
 	+ toString()
+	+ equals()
 	
 CLASE Profesor
     - id int
@@ -26,7 +28,8 @@ CLASE Profesor
     + setId(int id)
     + getNombre()
     + toString()
-
+	+ equals()
+	
 CLASE Calificacion
     - id int
     - estudianteId int
@@ -38,7 +41,6 @@ CLASE Calificacion
     + Calificacion(int estudianteId, int cursoId, int profesorId, String tipoEvaluacion, double nota, String fechaEvaluacion)
     + Calificacion(int id, int estudianteId, int cursoId, int profesorId, String tipoEvaluacion, double nota, String fechaEvaluacion)
     + getId()
-    + setId()
     + getEstudianteId()
     + getCursoId()
     + getProfesorId()
@@ -46,18 +48,18 @@ CLASE Calificacion
     + getNota()
     + getFechaEvaluacion()
     + toString()
-
+	+ equals()
 
 CLASE CalificacionDAO
 	
 	- conexion Connection
 	+ CalificacionDAO()
 	+ getConexion()
-    + void CREATE(Calificacion calificacion)
-    + List<Calificacion> listarPorEstudiante(int estudianteId)
-    + List<Calificacion> listarPorCurso(int cursoId)
-    + boolean UPDATE(int id, double nuevaNota) 
-    + boolean DELETE(int id)
+    + void create(Calificacion calificacion)
+    + boolean listarPorEstudiante(int estudianteId)
+    + boolean listarPorCurso(int cursoId)
+    + boolean update(int id, double nuevaNota) 
+    + boolean delete(int id)
 
 
 CLASE Main

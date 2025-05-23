@@ -5,11 +5,17 @@ package entidades;
  */
 public class Estudiante {
 
-	// El id que representa al estudiante
+	/**
+	 * El id que representa al estudiante
+	 */
 	private int id;
-	// El nombre del estudiante
+	/**
+	 * El nombre del estudiante
+	 */
 	private String nombre;
-	// El apellido del estudiante
+	/**
+	 * El apellido del estudiante
+	 */
 	private String apellido;
 
 	/**
@@ -35,15 +41,6 @@ public class Estudiante {
 	}
 
 	/**
-	 * Método para cambiar el id
-	 * 
-	 * @param id El nuevo id del estudiante
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
 	 * Método para devolver el nombre
 	 * 
 	 * @return El nombre del estudiante
@@ -62,7 +59,25 @@ public class Estudiante {
 	}
 
 	@Override
+	/**
+	 * Método para mostrar la información del objeto
+	 * 
+	 * @return Una cadena con toda la informacion del objeto
+	 */
 	public String toString() {
 		return "Id: " + id + "\nNombre: " + nombre + "\nApellido: " + apellido;
+	}
+
+	@Override
+	/**
+	 * Método para saber si dos objetos son iguales
+	 * 
+	 * @return True si son iguales, false, si no
+	 */
+	public boolean equals(Object obj) {
+		// Hacemos un cast
+		Estudiante est = (Estudiante) obj;
+
+		return this.id == est.id;
 	}
 }
