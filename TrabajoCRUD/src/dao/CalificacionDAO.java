@@ -50,11 +50,16 @@ public class CalificacionDAO {
 	 * @return Devuelve true si se ha podido añadir y false si no
 	 */
 	public boolean create(Calificacion calf) {
-		boolean res = false;
-		String sql = "INSERT INTO CALIFICACIONES (id_estudiante, id_curso, id_profesor, tipo_evaluacion, nota, fecha_evaluacion) VALUES (?, ?, ?, ?, ?, ?";
+		// Variable para verificar si se ha sido existoso o no
+		boolean res = true;
 
+		// Iniciamos la secuencia
+		String sql = "INSERT INTO CALIFICACIONES (id_estudiante, id_curso, id_profesor, tipo_evaluacion, nota, fecha_evaluacion) VALUES (?, ?, ?, ?, ?, ?)";
+
+		// Preparamos el estatement
 		PreparedStatement ps;
 
+		// Añadimos los datos del objeto a la base de datos
 		try {
 			ps = conexion.prepareStatement(sql);
 			ps.setInt(1, calf.getEstudianteId());
@@ -62,13 +67,16 @@ public class CalificacionDAO {
 			ps.setInt(3, calf.getProfesorId());
 			ps.setString(4, calf.getTipoEvaluacion());
 			ps.setDouble(5, calf.getNota());
-			ps.setDate(6, Date.valueOf(calf.getFechaEvaluacion()));
+			ps.setString(6, calf.getFechaEvaluacion());
 
 			ps.executeUpdate();
-			res = true;
-		} catch (SQLException e) {
+		} catch (SQLException e) {// Ha dado error
 			System.out.println("Error al insertar la calificación: " + e.getMessage());
+
+			// Situamos el valor en false
+			res = false;
 		}
+		// Devolvemos res
 		return res;
 	}
 
@@ -79,20 +87,28 @@ public class CalificacionDAO {
 	 * @return La lista con todas las calificiones de ese alumno
 	 */
 	public List<Calificacion> listarPorEstudiante(int estudianteId) {
+		// Declaramos la lista
 		List<Calificacion> calificaciones = new ArrayList<>();
+
+		// Iniciamos la secuencia
 		String sql = "SELECT * FROM Calificaciones WHERE id_estudiante = ?";
 
+		// Preparamos el statement
 		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+			// Buscamos por el id del estudiante
 			ps.setInt(1, estudianteId);
 			ResultSet rs = ps.executeQuery();
+
+			// Con un bucle añadimos a la lista todo objeto que tenga el mismo idestudiante
 			while (rs.next()) {
 				calificaciones.add(new Calificacion(rs.getInt("id_calificacion"), rs.getInt("id_estudiante"),
 						rs.getInt("id_curso"), rs.getInt("id_profesor"), rs.getString("tipo_evaluacion"),
 						rs.getDouble("nota"), rs.getDate("fecha_evaluacion").toString()));
 			}
-		} catch (SQLException e) {
+		} catch (SQLException e) {// Ha dado un error
 			System.err.println("Error al listar calificaciones por estudiante: " + e.getMessage());
 		}
+		// Devuelve la lista
 		return calificaciones;
 	}
 
@@ -103,20 +119,28 @@ public class CalificacionDAO {
 	 * @return La lista con todas las calificiones de ese alumno
 	 */
 	public List<Calificacion> listarPorCurso(int cursoId) {
+		// Declaramos la lista
 		List<Calificacion> calificaciones = new ArrayList<>();
+
+		// Iniciamos la secuencia
 		String sql = "SELECT * FROM Calificaciones WHERE id_curso = ?";
 
+		// Preparamos el statement
 		try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+			// Buscamos por el id del curso
 			stmt.setInt(1, cursoId);
 			ResultSet rs = stmt.executeQuery();
+
+			// Con un bucle añadimos a la lista todo objeto que tenga el mismo idcurso
 			while (rs.next()) {
 				calificaciones.add(new Calificacion(rs.getInt("id_calificacion"), rs.getInt("id_estudiante"),
 						rs.getInt("id_curso"), rs.getInt("id_profesor"), rs.getString("tipo_evaluacion"),
 						rs.getDouble("nota"), rs.getDate("fecha_evaluacion").toString()));
 			}
-		} catch (SQLException e) {
+		} catch (SQLException e) {// Ha dado un error
 			System.err.println("Error al listar calificaciones por curso: " + e.getMessage());
 		}
+		// Devuelve la lista
 		return calificaciones;
 	}
 
@@ -128,17 +152,25 @@ public class CalificacionDAO {
 	 * @return true Si la operación fue exitosa, false en caso contrario.
 	 */
 	public boolean update(int id, double nota) {
-		boolean res = false;
+		// Variable para verificar si se ha sido existoso o no
+		boolean res = true;
 
+		// Iniciamos la secuencia
 		String sql = "UPDATE Calificaciones SET nota = ? WHERE id_calificacion = ?";
 
+		// Preparamos el statement
 		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+			// Modificamos la nota donde coincida el id
 			ps.setDouble(1, nota);
 			ps.setInt(2, id);
-			res = true;
-		} catch (SQLException e) {
+
+			ps.executeUpdate();
+		} catch (SQLException e) {// Ha dado error
 			System.err.println("Error al modificar calificación: " + e.getMessage());
+			// Cambiamos el valor a false
+			res = false;
 		}
+		// Devolvemos res
 		return res;
 	}
 
@@ -149,14 +181,24 @@ public class CalificacionDAO {
 	 * @return true si la operación fue exitosa, false en caso contrario.
 	 */
 	public boolean delete(int id) {
-		boolean res = false;
+		// Variable para verificar si se ha sido existoso o no
+		boolean res = true;
+
+		// Iniciamos la secuencia
 		String sql = "DELETE FROM Calificaciones WHERE id_calificacion = ?";
+
+		// Preparamos el statement
 		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+			// Borramos de la base de datos donde coincida con el id
 			ps.setInt(1, id);
-			res = true;
-		} catch (SQLException e) {
+
+			ps.executeUpdate();
+		} catch (SQLException e) {// Ha dado error
 			System.err.println("Error al eliminar calificación: " + e.getMessage());
+			// Cambiamos el valor a false
+			res = false;
 		}
+		// Devolvemos res
 		return res;
 	}
 }
